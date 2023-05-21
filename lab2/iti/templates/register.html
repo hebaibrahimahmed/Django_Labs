@@ -1,0 +1,36 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+</head>
+<body>
+  <form method="POST" action="{% url 'register' %}">
+    {% csrf_token %}
+    <div>
+      <label for="id_name">Name:</label>
+      <input type="text" name="name" id="id_name" required>
+    </div>
+    <div>
+      <label for="id_email">Email:</label>
+      <input type="email" name="email" id="id_email" required>
+    </div>
+    <div>
+      <label for="id_password">Password:</label>
+      <input type="password" name="password" id="id_password" required>
+    </div>
+    <div>
+      <label for="id_staff">Staff:</label>
+      <select name="staff" id="id_staff" required>
+        {% for staff in staff %}
+          <option value="{{ staff.id }}">{{ staff.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>
