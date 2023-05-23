@@ -1,0 +1,66 @@
+{%extends 'index.html'%}
+
+{%block title%} Insert Student {%endblock%}
+
+{%block content%}
+<br><br><br><br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Update Student</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <form method="post">
+                {%csrf_token%}
+                 <div class="form-group my-2">
+                 <div class="d-flex">
+                     <label for="Username">Username</label>
+                     <span class="text-danger">*</span>
+                 </div>
+                <input type="text" class="form-control" value="{{student.username}}" name="username" id="Username" placeholder="Enter Username">
+              </div>
+                 <div class="form-group my-2">
+                     <label for="address">Address</label>
+                <input type="text" class="form-control" value="{{student.address}}" name="address" id="address" placeholder="Enter Address">
+              </div>
+              <div class="form-group my-2">
+                  <div class="d-flex">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <span class="text-danger">*</span>
+                 </div>
+                <input type="email" class="form-control" value="{{student.email}}" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group my-2">
+                  <div class="d-flex">
+                      <label for="exampleInputPassword1">Password</label>
+                      <span class="text-danger">*</span>
+                 </div>
+                <input type="password" class="form-control" value="{{student.password}}" name="password" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <div class="form-group my-2">
+                  <div class="d-flex">
+                      <label for="exampleInputPassword1">Select Staff</label>
+                      <span class="text-danger">*</span>
+                 </div>
+                <select class="form-select" name="staff_id" aria-label="Default select example">
+                    <option value="{{student.staff_id.id}}" selected>{{student.staff_id.username}}</option>
+                    {%for s in staff%}
+                        {%if s.id != student.staff_id.id%}
+                            <option value="{{s.id}}">{{s.username}}</option>
+                        {%endif%}
+                    {%endfor%}
+                </select>
+              </div>
+              <div class="form-check my-2">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div>
+              <button type="submit" class="btn btn-primary my-2">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}
